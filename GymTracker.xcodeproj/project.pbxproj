@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		50106A6C1F18408700FD357E /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50106A6B1F18408700FD357E /* FormViewController.swift */; };
 		50106A6F1F18670C00FD357E /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50106A6D1F18670C00FD357E /* UserData.xcdatamodeld */; };
+		5063F3831F18AFCC001BAD70 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F3821F18AFCC001BAD70 /* TimerViewController.swift */; };
 		50960FED1F181B3D0028A67B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50960FEC1F181B3D0028A67B /* AppDelegate.swift */; };
 		50960FEF1F181B3D0028A67B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50960FEE1F181B3D0028A67B /* ViewController.swift */; };
 		50960FF21F181B3D0028A67B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50960FF01F181B3D0028A67B /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		50106A6B1F18408700FD357E /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		50106A6E1F18670C00FD357E /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
+		5063F3821F18AFCC001BAD70 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		50960FE91F181B3D0028A67B /* GymTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50960FEC1F181B3D0028A67B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50960FEE1F181B3D0028A67B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				50106A6D1F18670C00FD357E /* UserData.xcdatamodeld */,
 				50106A6B1F18408700FD357E /* FormViewController.swift */,
 				50960FEE1F181B3D0028A67B /* ViewController.swift */,
+				5063F3821F18AFCC001BAD70 /* TimerViewController.swift */,
 				50960FF01F181B3D0028A67B /* Main.storyboard */,
 				50960FF31F181B3D0028A67B /* Assets.xcassets */,
 				50960FF51F181B3D0028A67B /* LaunchScreen.storyboard */,
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5063F3831F18AFCC001BAD70 /* TimerViewController.swift in Sources */,
 				50106A6C1F18408700FD357E /* FormViewController.swift in Sources */,
 				50960FEF1F181B3D0028A67B /* ViewController.swift in Sources */,
 				50106A6F1F18670C00FD357E /* UserData.xcdatamodeld in Sources */,

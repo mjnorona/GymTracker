@@ -88,9 +88,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let navigationController = segue.destination as! UINavigationController
-        let formViewController = navigationController.topViewController as! FormViewController
-        formViewController.delegate = self
+        if segue.identifier == "FormSegue" {
+            let navigationController = segue.destination as! UINavigationController
+            let formViewController = navigationController.topViewController as! FormViewController
+            formViewController.delegate = self
+        } else if segue.identifier == "TimerSegue" {
+            let timerViewController = segue.destination as! TimerViewController
+            timerViewController.delegate = self
+            timerViewController.dataHour = Int(time[0].hours)
+            timerViewController.dataMinute = Int(time[0].minutes)
+        }
+        
     }
     
     func cancelButtonPressed(by controller: FormViewController) {

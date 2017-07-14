@@ -189,13 +189,21 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="xzQ-8G-TSY"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZv-Tn-OwK">
+                                <rect key="frame" x="156" y="574" width="63" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go Timer"/>
+                                <connections>
+                                    <segue destination="Qyl-o2-O4S" kind="show" identifier="TimerSegue" id="y8W-JH-WCb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="eMp-yB-H3i">
                         <barButtonItem key="rightBarButtonItem" title="Info" id="Xct-VZ-eDG">
                             <connections>
-                                <segue destination="Udr-uP-axN" kind="presentation" id="2d8-Du-cHx"/>
+                                <segue destination="Udr-uP-axN" kind="presentation" identifier="FormSegue" id="2d8-Du-cHx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -203,6 +211,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1887.2" y="188.45577211394306"/>
+        </scene>
+        <!--Timer View Controller-->
+        <scene sceneID="5l4-rK-6Rx">
+            <objects>
+                <viewController id="Qyl-o2-O4S" customClass="TimerViewController" customModule="GymTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nab-dL-oHi"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wqm-oJ-9Si"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iTM-rR-yMc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="391-sc-q3h">
+                                <rect key="frame" x="170" y="440" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startButtonPressed:" destination="Qyl-o2-O4S" eventType="touchUpInside" id="HsP-w0-MQm"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKv-4F-p8R">
+                                <rect key="frame" x="16" y="255" width="120" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Minutes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPE-E2-u4o">
+                                <rect key="frame" x="211" y="255" width="148" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="hourlabel" destination="NKv-4F-p8R" id="MSa-43-SVD"/>
+                        <outlet property="minuteLabel" destination="HPE-E2-u4o" id="xgG-QF-K4g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QEa-Rj-Eyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1885.5999999999999" y="984.55772113943033"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="n59-VJ-hmO">

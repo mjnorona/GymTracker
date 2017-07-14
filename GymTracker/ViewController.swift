@@ -25,6 +25,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var time = [Time]()
     var gym = [Gym]()
     
+    var fulfilled = false
+    
     //newStuff
     var dayArray = [String]()
     var newName = ""
@@ -32,13 +34,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var newMinute = 0
     var newLatitude = 0.0
     var newLongitude = 0.0
+    var date: Date?
+    var calendar: Calendar?
+    var day: String?
     
+    func getDayOfWeek(_ today:String) -> Int? {
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let todayDate = formatter.date(from: today) else { return nil }
+        let myCalendar = Calendar(identifier: .gregorian)
+        let weekDay = myCalendar.component(.weekday, from: todayDate)
+        return weekDay
+    }
     
     @IBOutlet weak var tableView: UITableView!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var location: CLLocation!
     override func viewDidLoad() {
+        date = Date()
+        calendar = Calendar.current
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        
+        day = dateFormatter.string(from: date!)
+        
+        print("Today is: \(day!)")
+        
+        print(date!)
         print("DID LOAD")
         super.viewDidLoad()
         
@@ -87,7 +111,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let formViewController = navigationController.topViewController as! FormViewController
             formViewController.delegate = self
         } else if segue.identifier == "TimerSegue" {
-            let timerViewController = segue.destination as! TimerViewController
+            let navigationController = segue.destination as! UINavigationController
+            let timerViewController = navigationController.topViewController as! TimerViewController
             timerViewController.delegate = self
             timerViewController.dataHour = newHour
             timerViewController.dataMinute = newMinute
@@ -240,6 +265,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 //        tableView.reloadData()
         
         
+        
     }
     
     
@@ -355,7 +381,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         tableView.reloadData()
     }
 
-
+    @IBAction func unwindTimer(segue: UIStoryboardSegue) {
+        print("timed")
+        let segue = (segue.source as! TimerViewController)
+        fulfilled = segue.success
+        print(fulfilled)
+        let dayExists = false
+        
+    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -367,6 +400,10 @@ extension ViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dayCell", for: indexPath)
         cell.textLabel?.text = dayArray[indexPath.row]
+        cell.tag = indexPath.row
+        if cell.textLabel?.text == day && fulfilled == true {
+            cell.backgroundColor = UIColor.green
+        }
         return cell
     }
 }

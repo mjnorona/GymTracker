@@ -16,7 +16,7 @@ class TimerViewController: UIViewController {
     var minCounter = 0
     var hour = 0
     var timer = Timer()
-    
+    var success = false
     @IBOutlet weak var hourlabel: UILabel!
     @IBOutlet weak var minuteLabel: UILabel!
     
@@ -58,7 +58,7 @@ class TimerViewController: UIViewController {
         alert.addAction(OkAction)
         self.present(alert, animated: true, completion: nil)
         
-        
+        success = true
         
         
         print("the total time at the gym is: \(String(hour)) hour and \(String(minCounter))")
@@ -72,7 +72,7 @@ class TimerViewController: UIViewController {
         print(dataMinute!)
         print(dataHour!)
         
-        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: {_ in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: {_ in
             self.counter()
         })
     }

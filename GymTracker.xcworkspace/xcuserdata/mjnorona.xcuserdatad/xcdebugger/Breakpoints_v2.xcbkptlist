@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GymTracker/ViewController.swift"
-            timestampString = "521701923.649371"
+            timestampString = "521704271.885852"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GymTracker/ViewController.swift"
-            timestampString = "521701923.649371"
+            timestampString = "521704839.678557"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "unwindForm(segue:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GymTracker/ViewController.swift"
-            timestampString = "521701923.649371"
+            timestampString = "521704839.678557"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "unwindForm(segue:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,13 +90,91 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GymTracker/ViewController.swift"
-            timestampString = "521701923.649371"
+            timestampString = "521704839.678557"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "locationButtonPressed(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymTracker/ViewController.swift"
+            timestampString = "521704313.509679"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GymTracker.ViewController.location.getter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.CLLocation&gt;"
+                  moduleName = "GymTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mjnorona/Documents/Projects/iOS/GymTracker/GymTracker/ViewController.swift"
+                  timestampString = "521704324.849857"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GymTracker.ViewController.location.setter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.CLLocation&gt;"
+                  moduleName = "GymTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mjnorona/Documents/Projects/iOS/GymTracker/GymTracker/ViewController.swift"
+                  timestampString = "521704324.851114"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GymTracker.ViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; GymTracker.ViewController"
+                  moduleName = "GymTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mjnorona/Documents/Projects/iOS/GymTracker/GymTracker/ViewController.swift"
+                  timestampString = "521704324.852316"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "788">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GymTracker.ViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;GymTracker.ViewController&gt;"
+                  moduleName = "GymTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mjnorona/Documents/Projects/iOS/GymTracker/GymTracker/ViewController.swift"
+                  timestampString = "521704324.853494"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "728">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

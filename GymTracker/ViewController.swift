@@ -20,14 +20,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
-    var name: String?
-    var days = [String: Bool]()
-    var time: [Int] = []
+    var name = [Name]()
+    var days = [Days]()
+    var time = [Time]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var location: CLLocation!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         print("loaded")
         //current location manager
@@ -52,7 +53,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 //        marker.map = mapView
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.hideKeyboardWhenTappedAround() 
+        self.hideKeyboardWhenTappedAround()
+        fetchAllItems()
         
     }
     
@@ -63,24 +65,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         do {
             let resultName = try context.fetch(requestName)
-            let itemName = resultName as! Name
+            name = resultName as! [Name]
         } catch {
             print("\(error)")
         }
         
         do {
             let resultDays = try context.fetch(requestDays)
-            let itemDays = resultDays as! Days
+            days = resultDays as! [Days]
         } catch {
             print("\(error)")
         }
         
         do {
             let resultTime = try context.fetch(requestTime)
-            let itemTime = resultTime as! Time
+            time = resultTime as! [Time]
         } catch {
             print("\(error)")
         }
+        print(name[0].text!)
+        print(days[0].monday)
+        print(time[0].hours)
+        print(time[0].minutes)
         
         
     }
@@ -122,14 +128,47 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func unwindForm(segue: UIStoryboardSegue) {
         let formViewController = segue.source as! FormViewController
-        name = formViewController.nameLabel.text
-        days = formViewController.userDays
-        time.append(formViewController.userHours!)
-        time.append(formViewController.userHours!)
+        //data passed
+        let tempName = formViewController.nameLabel.text
+        let tempDays = formViewController.userDays
+        var tempTime = [Int]()
+        tempTime.append(formViewController.userHours!)
+        tempTime.append(formViewController.userHours!)
         
-        print(name!)
-        print(days)
-        print(time)
+        //core data***
+        
+        //name data
+        let userName = NSEntityDescription.insertNewObject(forEntityName: "Name", into: context) as! Name
+        
+        userName.setValue(tempName, forKey: "text")
+        
+        //days data
+        let userDays = NSEntityDescription.insertNewObject(forEntityName: "Days", into: context) as! Days
+        userDays.setValue(tempDays["Monday"], forKey: "monday")
+        userDays.setValue(tempDays["Tuesday"], forKey: "tuesday")
+        userDays.setValue(tempDays["Wednesday"], forKey: "wednesday")
+        userDays.setValue(tempDays["Thursday"], forKey: "thursday")
+        userDays.setValue(tempDays["Friday"], forKey: "friday")
+        userDays.setValue(tempDays["Saturday"], forKey: "saturday")
+        userDays.setValue(tempDays["Sunday"], forKey: "sunday")
+        
+        //time data
+        let userTime = NSEntityDescription.insertNewObject(forEntityName: "Time", into: context) as! Time
+        
+        userTime.setValue(tempTime[0], forKey: "hours")
+        userTime.setValue(tempTime[1], forKey: "minutes")
+        
+        do {
+            try context.save()
+        } catch {
+            print("\(error)")
+        }
+        
+       
+        
+        print(tempName!)
+        print(tempDays)
+        print(tempTime)
         
         
         

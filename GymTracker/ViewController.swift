@@ -10,6 +10,8 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import CoreLocation
+import CoreData
+
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -22,6 +24,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var days = [String: Bool]()
     var time: [Int] = []
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var location: CLLocation!
     override func viewDidLoad() {
@@ -50,6 +53,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.hideKeyboardWhenTappedAround() 
+        
+    }
+    
+    func fetchAllItems() {
+        let requestName = NSFetchRequest<NSFetchRequestResult>(entityName: "Name")
+        let requestDays = NSFetchRequest<NSFetchRequestResult>(entityName: "Days")
+        let requestTime = NSFetchRequest<NSFetchRequestResult>(entityName: "Time")
+        
+        do {
+            let resultName = try context.fetch(requestName)
+            let itemName = resultName as! Name
+        } catch {
+            print("\(error)")
+        }
+        
+        do {
+            let resultDays = try context.fetch(requestDays)
+            let itemDays = resultDays as! Days
+        } catch {
+            print("\(error)")
+        }
+        
+        do {
+            let resultTime = try context.fetch(requestTime)
+            let itemTime = resultTime as! Time
+        } catch {
+            print("\(error)")
+        }
+        
         
     }
  

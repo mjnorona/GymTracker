@@ -23,6 +23,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var name = [Name]()
     var days = [Days]()
     var time = [Time]()
+    var dayArray = [String]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
@@ -30,7 +31,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        print("loaded")
+        
         //current location manager
         locationMananger = CLLocationManager()
         locationMananger.delegate = self as CLLocationManagerDelegate
@@ -55,7 +56,45 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         self.hideKeyboardWhenTappedAround()
         fetchAllItems()
+//        print("Name: \(name)")
+//        print("Days: \(days)")
         
+        let myDays = self.days[0]
+        print(myDays)
+        
+        if myDays.monday {
+            dayArray.append("Monday")
+        }
+        if myDays.tuesday {
+            dayArray.append("Tuesday")
+        }
+        if myDays.wednesday {
+            dayArray.append("Wednesday")
+        }
+        if myDays.thursday {
+            dayArray.append("Thursday")
+        }
+        if myDays.friday {
+            dayArray.append("Friday")
+        }
+        if myDays.saturday {
+            dayArray.append("Saturday")
+        }
+        if myDays.sunday {
+            dayArray.append("Sunday")
+        }
+        print("Dayz: \(dayArray)")
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navigationController = segue.destination as! UINavigationController
+        let formViewController = navigationController.topViewController as! FormViewController
+        formViewController.delegate = self
+    }
+    
+    func cancelButtonPressed(by controller: FormViewController) {
+        dismiss(animated: true, completion: nil)
     }
     
     func fetchAllItems() {
@@ -66,6 +105,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         do {
             let resultName = try context.fetch(requestName)
             name = resultName as! [Name]
+//            print(name)
         } catch {
             print("\(error)")
         }
@@ -73,6 +113,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         do {
             let resultDays = try context.fetch(requestDays)
             days = resultDays as! [Days]
+//            print(days)
         } catch {
             print("\(error)")
         }
@@ -80,6 +121,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         do {
             let resultTime = try context.fetch(requestTime)
             time = resultTime as! [Time]
+//            print(time)
         } catch {
             print("\(error)")
         }
@@ -178,6 +220,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
 }
 
+extension ViewController: UITableViewDataSource {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return dayArray.count
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dayCell", for: indexPath)
+        cell.textLabel?.text = dayArray[indexPath.row]
+        return cell
+    }
+}
+
+
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -189,3 +245,5 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+

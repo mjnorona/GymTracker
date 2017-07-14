@@ -20,11 +20,9 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var hourlabel: UILabel!
     @IBOutlet weak var minuteLabel: UILabel!
     
-    @IBAction func startButtonPressed(_ sender: UIButton) {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: {_ in
-            self.counter()
-        })
-    }
+    
+    
+    
     
     
     func counter() {
@@ -73,6 +71,10 @@ class TimerViewController: UIViewController {
         hourlabel.text = ("\(String(hour)) hours")
         print(dataMinute!)
         print(dataHour!)
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: {_ in
+            self.counter()
+        })
     }
 
     override func didReceiveMemoryWarning() {

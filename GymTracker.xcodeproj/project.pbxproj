@@ -44,7 +44,7 @@
 		50960FFD1F181B3D0028A67B /* GymTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		509610011F181B3D0028A67B /* GymTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymTrackerTests.swift; sourceTree = "<group>"; };
 		509610031F181B3D0028A67B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5096100C1F181B7F0028A67B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		5096100C1F181B7F0028A67B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5FF676960504648EFA206CF7 /* Pods-GymTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GymTracker/Pods-GymTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		71B271524EFB71DEAF410A94 /* libPods-GymTracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GymTracker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD1FE3E199139F708ECF0A46 /* Pods-GymTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GymTracker/Pods-GymTracker.release.xcconfig"; sourceTree = "<group>"; };

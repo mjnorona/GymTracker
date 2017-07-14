@@ -23,15 +23,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var name = [Name]()
     var days = [Days]()
     var time = [Time]()
-    var dayArray = [String]()
+    var gym = [Gym]()
     
+    //newStuff
+    var dayArray = [String]()
+    var newName = ""
+    var newHour = 0
+    var newMinute = 0
+    var newLatitude = 0.0
+    var newLongitude = 0.0
+    
+    
+    @IBOutlet weak var tableView: UITableView!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var location: CLLocation!
     override func viewDidLoad() {
-        
+        print("DID LOAD")
         super.viewDidLoad()
         
+        clearCoreData()
+        print(name)
+        print(days)
+        print(time)
         //current location manager
         locationMananger = CLLocationManager()
         locationMananger.delegate = self as CLLocationManagerDelegate
@@ -55,36 +69,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.hideKeyboardWhenTappedAround()
+        
         fetchAllItems()
 //        print("Name: \(name)")
 //        print("Days: \(days)")
         
-        let myDays = self.days[0]
-        print(myDays)
         
-        if myDays.monday {
-            dayArray.append("Monday")
-        }
-        if myDays.tuesday {
-            dayArray.append("Tuesday")
-        }
-        if myDays.wednesday {
-            dayArray.append("Wednesday")
-        }
-        if myDays.thursday {
-            dayArray.append("Thursday")
-        }
-        if myDays.friday {
-            dayArray.append("Friday")
-        }
-        if myDays.saturday {
-            dayArray.append("Saturday")
-        }
-        if myDays.sunday {
-            dayArray.append("Sunday")
-        }
-        print("Dayz: \(dayArray)")
+//        print("Dayz: \(dayArray)")
+        print("hello")
         
+        self.title = "Welcome, \(newName)!"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,25 +89,43 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         } else if segue.identifier == "TimerSegue" {
             let timerViewController = segue.destination as! TimerViewController
             timerViewController.delegate = self
-            timerViewController.dataHour = Int(time[0].hours)
-            timerViewController.dataMinute = Int(time[0].minutes)
+            timerViewController.dataHour = newHour
+            timerViewController.dataMinute = newMinute
         }
         
     }
+    
+    func getDay(){
+        
+    }
+    
+    
     
     func cancelButtonPressed(by controller: FormViewController) {
         dismiss(animated: true, completion: nil)
     }
     
     func fetchAllItems() {
+        print("hello")
+        
         let requestName = NSFetchRequest<NSFetchRequestResult>(entityName: "Name")
         let requestDays = NSFetchRequest<NSFetchRequestResult>(entityName: "Days")
         let requestTime = NSFetchRequest<NSFetchRequestResult>(entityName: "Time")
+        let requestGym = NSFetchRequest<NSFetchRequestResult>(entityName: "Gym")
+        print("hello1")
+        //delete requst
         
         do {
+            print("hello2")
             let resultName = try context.fetch(requestName)
+            
             name = resultName as! [Name]
-//            print(name)
+//            for item in resultName {
+//                context.delete(item as! NSManagedObject)
+//            }
+            
+            
+            print(name)
         } catch {
             print("\(error)")
         }
@@ -121,7 +133,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         do {
             let resultDays = try context.fetch(requestDays)
             days = resultDays as! [Days]
-//            print(days)
+            
+            print(days)
         } catch {
             print("\(error)")
         }
@@ -129,14 +142,77 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         do {
             let resultTime = try context.fetch(requestTime)
             time = resultTime as! [Time]
-//            print(time)
+            
+            print(time)
+            
         } catch {
             print("\(error)")
         }
-        print(name[0].text!)
-        print(days[0].monday)
-        print(time[0].hours)
-        print(time[0].minutes)
+        
+        do {
+            let resultGym = try context.fetch(requestGym)
+            gym = resultGym as! [Gym]
+            
+            print(time)
+            
+        } catch {
+            print("\(error)")
+        }
+        print("hello3")
+        
+//        print(name[0].text!)
+//        print(days[0].monday)
+//        print(time[0].hours)
+//        print(time[0].minutes)
+        
+        if days.count > 0 {
+            let myDays = self.days[self.days.count - 1]
+            print("hello!")
+            //        print(myDays)
+            
+            if myDays.monday {
+                dayArray.append("Monday")
+            }
+            if myDays.tuesday {
+                dayArray.append("Tuesday")
+            }
+            if myDays.wednesday {
+                dayArray.append("Wednesday")
+            }
+            if myDays.thursday {
+                dayArray.append("Thursday")
+            }
+            if myDays.friday {
+                dayArray.append("Friday")
+            }
+            if myDays.saturday {
+                dayArray.append("Saturday")
+            }
+            if myDays.sunday {
+                dayArray.append("Sunday")
+            }
+        }
+        
+        if time.count > 0 {
+            let myTime = self.time[self.time.count - 1]
+            newHour = Int(myTime.hours)
+            newMinute = Int(myTime.minutes)
+        }
+        
+        if gym.count > 0 {
+            let myGym = self.gym[self.gym.count - 1]
+            newLatitude = myGym.latitude
+            newLongitude = myGym.longitude
+        }
+        
+        if name.count > 0 {
+            let myName = self.name[self.name.count - 1]
+            newName = myName.text!
+            print("Count name: \(myName.text)")
+            print("New name: \(newName)")
+        }
+        
+        self.title = "Welcome, \(newName)!"
         
         
     }
@@ -146,14 +222,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let
         latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
+        
+        if latitude >= (newLatitude - 0.01) && latitude <= (newLatitude + 0.01) &&
+            longitude >= (newLongitude - 0.01) && longitude <= (newLongitude + 0.01) {
+            performSegue(withIdentifier: "TimerSegue", sender: sender)
+        }
+        
         print(latitude)
         print(longitude)
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("DID APPEAR")
         super.viewDidAppear(animated)
+//        fetchAllItems()
+        
+//        tableView.reloadData()
+        
         
     }
+    
     
     func checkCoreLocationPermission() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -176,15 +264,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func clearCoreData() {
+        for item in name {
+            context.delete(item)
+        }
+        
+        for item in days {
+            context.delete(item)
+            
+        }
+        
+        for item in time {
+            context.delete(item)
+            
+        }
+    }
+    
     @IBAction func unwindForm(segue: UIStoryboardSegue) {
+        print("HI!")
+        dayArray = []
         let formViewController = segue.source as! FormViewController
         //data passed
         let tempName = formViewController.nameLabel.text
+        print(1)
         let tempDays = formViewController.userDays
+        print(2)
         var tempTime = [Int]()
-        tempTime.append(formViewController.userHours!)
-        tempTime.append(formViewController.userHours!)
+        print(3)
+        print(formViewController.userHours)
+        tempTime.append(formViewController.userHours)
+        print(4)
+        tempTime.append(formViewController.userMinutes)
+        print(5)
+        var tempLatitude = formViewController.userLatitude
+        print(6)
+        var tempLongitude = formViewController.userLongitude
+        print(7)
         
+        print("over here")
         //core data***
         
         //name data
@@ -208,21 +325,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         userTime.setValue(tempTime[0], forKey: "hours")
         userTime.setValue(tempTime[1], forKey: "minutes")
         
+        //gym data
+        let userGym = NSEntityDescription.insertNewObject(forEntityName: "Gym", into: context) as! Gym
+        userGym.setValue(tempLatitude, forKey: "latitude")
+        userGym.setValue(tempLongitude, forKey: "longitude")
+//        print("Latitude and Longitude")
+//        print(userGym.latitude)
+//        print(userGym.longitude)
+        print("yo!")
+        
         do {
             try context.save()
         } catch {
             print("\(error)")
         }
         
-       
+        print("Here! \(dayArray)")
+        fetchAllItems()
+        print("Here also! \(dayArray)")
         
-        print(tempName!)
-        print(tempDays)
-        print(tempTime)
+        
+//        print(tempName!)
+//        print(tempDays)
+//        print(tempTime)
         
         
         
         print("unwinded")
+        tableView.reloadData()
     }
 
 

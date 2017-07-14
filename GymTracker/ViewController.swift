@@ -89,7 +89,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func unwindForm(segue: UIStoryboardSegue) {
+        let formViewController = segue.source as! FormViewController
+        name = formViewController.nameLabel.text
+        days = formViewController.userDays
+        time.append(formViewController.userHours!)
+        time.append(formViewController.userHours!)
         
+        print(name!)
+        print(days)
+        print(time)
         
         
         

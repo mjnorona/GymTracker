@@ -10,7 +10,7 @@ import UIKit
 
 class FormViewController: UIViewController  {
     
-    var userDays: [String:Bool]?
+    var userDays = ["Monday":false, "Tuesday":false, "Wednesday":false, "Thursday":false, "Friday":false, "Saturday":false, "Sunday":false]
     var userHours: Int?
     var userMinutes: Int?
     
@@ -31,6 +31,7 @@ class FormViewController: UIViewController  {
         for i in 0..<60 {
             times[1].append(i)
         }
+        self.hideKeyboardWhenTappedAround()
         
     }
 
@@ -70,11 +71,15 @@ extension FormViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
         if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark {
-            userDays?[days[indexPath.row]] = false
+            
+            userDays[days[indexPath.row]] = false
+            print(userDays)
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
         } else {
+            
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
-            userDays?[days[indexPath.row]] = true
+            userDays[days[indexPath.row]] = true
+            print(userDays)
         }
     }
 }
